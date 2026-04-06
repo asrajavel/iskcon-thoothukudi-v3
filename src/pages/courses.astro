@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const courses = [
+  {
+    title: 'Bhagavad Gita Study',
+    description: 'A systematic chapter-by-chapter study of the Bhagavad Gita As It Is by Srila Prabhupada. Understand the essence of Vedic philosophy and its practical application in daily life.',
+    schedule: 'Every Saturday, 6:00 PM - 7:30 PM',
+    duration: '18 weeks (one chapter per week)',
+    level: 'Beginner',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Radha_Krishna_ISKCON_Tirupati.JPG',
+  },
+  {
+    title: 'Srimad Bhagavatam Classes',
+    description: 'Daily morning discourse on the Srimad Bhagavatam, the ripened fruit of the Vedic literature. Covers the pastimes of Lord Krishna and His devotees.',
+    schedule: 'Daily, 7:30 AM - 8:30 AM',
+    duration: 'Ongoing',
+    level: 'All levels',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/ISKCON_Juhu_Temple_Altars.JPG',
+  },
+];
+---
+
+<Layout title="Courses" description="Spiritual education programs at ISKCON Thoothukudi">
+  <section class="max-w-4xl mx-auto px-6 py-20">
+    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-3">Spiritual Education</h1>
+    <p class="text-muted text-lg max-w-xl mb-16 leading-relaxed">
+      Deepen your understanding of Vedic philosophy through our courses and programs.
+      All programs are free and open to everyone.
+    </p>
+
+    <div class="space-y-16">
+      {courses.map(course => (
+        <div class="flex flex-col md:flex-row gap-0 border-b border-border pb-16 last:border-0">
+          <div class="md:w-1/2 aspect-[4/3] md:aspect-auto overflow-hidden shrink-0">
+            <img src={course.imageUrl} alt={course.title} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="pt-6 md:pt-0 md:pl-10 flex-1 flex flex-col justify-center">
+            <span class="text-xs text-taupe font-medium uppercase tracking-widest">{course.level}</span>
+            <h3 class="font-bold text-2xl text-dark mt-2">{course.title}</h3>
+            <p class="text-muted mt-3 leading-relaxed">{course.description}</p>
+            <div class="mt-5 space-y-2 text-sm text-muted">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-taupe" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                {course.schedule}
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-taupe" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                {course.duration}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="border-t border-border mt-16 pt-16 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-dark mb-3">Ready to begin your spiritual journey?</h2>
+      <p class="text-muted mb-6">All courses are free. Just walk in or contact us to register.</p>
+      <a href={`${base}/contact`} class="inline-block bg-sage hover:bg-sage-dark text-white px-7 py-3 text-sm font-medium uppercase tracking-wide transition-colors">
+        Register Now
+      </a>
+    </div>
+  </section>
+</Layout>

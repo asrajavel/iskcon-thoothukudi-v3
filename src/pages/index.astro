@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const featuredSevas = [
+  { title: 'Abhishekam', description: 'Sacred bathing ceremony for the deities with milk, honey, and holy water.', imageUrl: 'https://donations.iskconwhitefield.org/cdn/shop/files/Untitleddesign_13.png?v=1742070333' },
+  { title: 'Archana', description: 'Chanting of 108 or 1008 names of the Lord for blessings.', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Radha_Krishna_ISKCON_Tirupati.JPG' },
+];
+
+const upcomingEvents = [
+  { title: 'Janmashtami 2026', description: 'Grand celebration of Lord Krishna\'s appearance day with kirtan, drama, and midnight abhishekam.', badge: 'Aug 2026' },
+  { title: 'Sunday Love Feast', description: 'Weekly gathering with kirtan, discourse on Bhagavad Gita, and sumptuous prasadam.', badge: 'Every Sunday' },
+];
+
+const exploreLinks = [
+  { title: 'Temple Sevas', href: `${base}/sevas` },
+  { title: 'Spiritual Courses', href: `${base}/courses` },
+  { title: 'Events & Festivals', href: `${base}/events` },
+  { title: 'Contact Us', href: `${base}/contact` },
+];
+---
+
+<Layout title="Home">
+  <!-- Hero Image -->
+  <section>
+    <div class="w-full aspect-[21/9] overflow-hidden">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/9e/ISKCON_Juhu_Temple_and_Guesthouse.JPG"
+        alt="ISKCON Temple"
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <div class="max-w-4xl mx-auto px-6 py-16 md:py-20">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-dark leading-tight mb-6">
+        ISKCON Thoothukudi
+      </h1>
+      <p class="text-lg md:text-xl text-muted max-w-2xl mb-10 leading-relaxed">
+        ISKCON Thoothukudi — A spiritual oasis in the pearl city, dedicated to the path of Bhakti Yoga
+        as taught by His Divine Grace A.C. Bhaktivedanta Swami Prabhupada.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href={`${base}/sevas`} class="bg-sage hover:bg-sage-dark text-white px-7 py-3 text-sm font-medium uppercase tracking-wide transition-colors">
+          Book a Seva
+        </a>
+        <a href={`${base}/courses`} class="border border-dark hover:bg-dark hover:text-white text-dark px-7 py-3 text-sm font-medium uppercase tracking-wide transition-colors">
+          Explore Courses
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Darshan Timings -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="border-t border-b border-border py-8 flex flex-wrap items-center justify-between gap-6">
+      <div>
+        <h2 class="font-bold text-dark text-lg">Temple Darshan Timings</h2>
+        <p class="text-muted text-sm mt-1">Open for all devotees, every day</p>
+      </div>
+      <div class="flex gap-10 text-sm">
+        <div class="text-center">
+          <div class="text-dark font-bold">Morning</div>
+          <div class="text-muted">4:30 AM - 1:00 PM</div>
+        </div>
+        <div class="text-center">
+          <div class="text-dark font-bold">Evening</div>
+          <div class="text-muted">4:00 PM - 8:30 PM</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Sevas -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-10">Featured Sevas</h2>
+    <div class="space-y-16">
+      {featuredSevas.map(seva => (
+        <div>
+          <div class="aspect-[16/9] overflow-hidden">
+            <img src={seva.imageUrl} alt={seva.title} class="w-full h-full object-cover" loading="lazy" />
+          </div>
+          <div class="pt-6">
+            <h3 class="text-2xl font-bold text-dark">{seva.title}</h3>
+            <p class="text-muted mt-2 leading-relaxed">{seva.description}</p>
+            <a href={`${base}/sevas`} class="inline-flex items-center gap-1 mt-3 text-sm text-sage font-medium hover:underline">
+              Learn more
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Upcoming Events -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-dark mb-10">Upcoming Events</h2>
+    <div class="space-y-10">
+      {upcomingEvents.map(event => (
+        <div class="border-b border-border pb-10 last:border-0">
+          <span class="text-xs text-taupe font-medium uppercase tracking-widest">{event.badge}</span>
+          <h3 class="text-2xl font-bold text-dark mt-2">{event.title}</h3>
+          <p class="text-muted mt-2 leading-relaxed">{event.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Explore More -->
+  <section class="max-w-4xl mx-auto px-6 pb-20">
+    <div class="border-t border-border pt-20">
+      <h2 class="text-3xl md:text-4xl font-bold text-dark mb-10">Explore more</h2>
+      <div class="grid sm:grid-cols-2 gap-0 border-t border-border">
+        {exploreLinks.map(link => (
+          <a href={link.href} class="flex items-center justify-between py-5 px-2 border-b border-border hover:bg-surface-alt transition-colors group">
+            <span class="font-medium text-dark group-hover:text-sage transition-colors">{link.title}</span>
+            <svg class="w-5 h-5 text-muted group-hover:text-sage transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</Layout>

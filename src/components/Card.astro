@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  imageUrl?: string;
+  href?: string;
+  badge?: string;
+}
+
+const { title, description, image, imageUrl, href, badge } = Astro.props;
+---
+
+<div class="group">
+  {imageUrl ? (
+    <div class="aspect-[16/10] overflow-hidden">
+      <img src={imageUrl} alt={title} class="w-full h-full object-cover" loading="lazy" />
+    </div>
+  ) : image ? (
+    <div class="aspect-[16/10] bg-surface-alt flex items-center justify-center">
+      <span class="text-5xl">{image}</span>
+    </div>
+  ) : null}
+  <div class="pt-5 pb-2">
+    <div class="flex items-start justify-between gap-3">
+      <h3 class="font-bold text-xl text-dark">{title}</h3>
+      {badge && (
+        <span class="text-xs text-taupe font-medium shrink-0 uppercase tracking-wide pt-1">{badge}</span>
+      )}
+    </div>
+    <p class="text-muted text-sm mt-2 leading-relaxed">{description}</p>
+    {href && (
+      <a href={href} class="inline-flex items-center gap-1 mt-3 text-sm text-sage font-medium hover:underline">
+        Learn more
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    )}
+  </div>
+</div>

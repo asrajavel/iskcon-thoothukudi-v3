@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const events = [
+  {
+    title: 'Janmashtami 2026',
+    date: 'August 14, 2026',
+    time: '4:00 PM - 12:30 AM',
+    description: 'Grand celebration of Lord Krishna\'s appearance day. Join us for an evening of kirtan, drama performances depicting Krishna\'s pastimes, abhishekam at midnight, and sumptuous prasadam feast.',
+    highlight: true,
+  },
+  {
+    title: 'Sunday Love Feast',
+    date: 'Every Sunday',
+    time: '5:00 PM - 8:00 PM',
+    description: 'Weekly program featuring ecstatic kirtan, enlightening discourse on Bhagavad Gita, and a delicious multi-course prasadam feast. Everyone is welcome!',
+    highlight: false,
+  },
+  {
+    title: 'Gaura Purnima',
+    date: 'March 2027',
+    time: 'All Day',
+    description: 'Celebration of the appearance of Lord Chaitanya Mahaprabhu, the most merciful incarnation who spread the Hare Krishna movement 500 years ago.',
+    highlight: false,
+  },
+  {
+    title: 'Ratha Yatra',
+    date: 'July 2026',
+    time: '8:00 AM - 6:00 PM',
+    description: 'The grand chariot festival of Lord Jagannath through the streets of Thoothukudi. Massive procession with kirtan, dance, and free prasadam distribution.',
+    highlight: true,
+  },
+  {
+    title: 'Govardhan Puja',
+    date: 'October 2026',
+    time: '9:00 AM - 1:00 PM',
+    description: 'Celebration of Lord Krishna lifting Govardhan Hill. Features a grand Annakut (hill of food) offering with 108+ preparations.',
+    highlight: false,
+  },
+  {
+    title: 'Kirtan Mela',
+    date: 'Monthly (Last Saturday)',
+    time: '6:00 PM - 9:00 PM',
+    description: 'An evening of continuous kirtan with visiting kirtaniyas from ISKCON centers across South India. Deep, meditative chanting experience.',
+    highlight: false,
+  },
+];
+---
+
+<Layout title="Events" description="Upcoming festivals and events at ISKCON Thoothukudi">
+  <section class="max-w-3xl mx-auto px-6 py-20">
+    <h1 class="text-4xl md:text-5xl font-bold text-dark mb-3">Events & Festivals</h1>
+    <p class="text-muted text-lg max-w-xl mb-16 leading-relaxed">
+      Join us in celebrating the timeless Vedic festivals and special programs
+      throughout the year. All events are free and open to everyone.
+    </p>
+
+    <div>
+      {events.map((event, i) => (
+        <div class="py-10 border-b border-border last:border-0">
+          <div class="flex items-baseline gap-6">
+            <div class="shrink-0 w-36">
+              <div class="text-xs text-taupe font-medium uppercase tracking-widest">{event.date}</div>
+              <div class="text-xs text-muted mt-1">{event.time}</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-3">
+                <h3 class="text-xl font-bold text-dark">{event.title}</h3>
+                {event.highlight && (
+                  <span class="text-[10px] text-sage font-bold uppercase tracking-widest">Featured</span>
+                )}
+              </div>
+              <p class="text-muted text-sm mt-2 leading-relaxed">{event.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
